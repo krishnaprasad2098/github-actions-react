@@ -224,6 +224,7 @@ const config: Config = {
     '**/__tests__/**/*.(ts|tsx)',
     '**/?(*.)+(spec|test).(ts|tsx)',
   ],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
 };
 
 export default config;
