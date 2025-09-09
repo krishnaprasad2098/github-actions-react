@@ -61,6 +61,7 @@ jobs:
 #     - name: Get code
 #       uses: actions/checkout@v5
 
+
 #     - name: Install NodeJS
 #       uses: actions/setup-node@v5
 #       with:
@@ -71,3 +72,17 @@ jobs:
 #       run: npm run build
 #     - name: Deployment
 #       run: echo "Deploying ..."
+
+    - name: Install NodeJS
+      uses: actions/setup-node@v5
+      with:
+        node-version: 22
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build Project
+      run: npm run build
+
+    - name: Deployment
+      run: echo "Deploying ..."
+
