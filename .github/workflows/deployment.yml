@@ -1,28 +1,77 @@
-name: Deploy Project  # Name of the Workflow
-on: push # Event occured
-jobs: #Jobs
-  test: # Job Name 
-    runs-on: ubuntu-latest # running on machine
+name: Deploy website
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
     steps:
-    - name: Get code  # Step name
-      uses: actions/checkout@v5 
-
-    - name: Install NodeJS
-      uses: actions/setup-node@v5
-      with:
-        node-version: 22
-    
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm test 
-  deploy:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
+      - name: Test code
+        run: npm run test
+  build:
     needs: test
     runs-on: ubuntu-latest
     steps:
-    - name: Get code
-      uses: actions/checkout@v5
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Build website
+        run: npm run build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: echo "Deploying..."
+
+
+
+
+# name: Deploy Project  # Name of the Workflow
+# on: push # Event occured
+# jobs: #Jobs
+#   test: # Job Name 
+#     runs-on: ubuntu-latest # running on machine
+#     steps:
+#     - name: Get code  # Step name
+#       uses: actions/checkout@v5 
+
+#     - name: Install NodeJS
+#       uses: actions/setup-node@v5
+#       with:
+#         node-version: 22
+    
+#     - name: Install dependencies
+#       run: npm install
+
+#     - name: Run tests
+#       run: npm test 
+#   deploy:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Get code
+#       uses: actions/checkout@v5
+
+
+#     - name: Install NodeJS
+#       uses: actions/setup-node@v5
+#       with:
+#         node-version: 22
+#     - name: Install dependencies
+#       run: npm install
+#     - name: Build Project
+#       run: npm run build
+#     - name: Deployment
+#       run: echo "Deploying ..."
 
     - name: Install NodeJS
       uses: actions/setup-node@v5
@@ -36,3 +85,4 @@ jobs: #Jobs
 
     - name: Deployment
       run: echo "Deploying ..."
+
