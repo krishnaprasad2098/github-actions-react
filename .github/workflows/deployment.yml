@@ -25,64 +25,18 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist
+          # path: |
+          #   dist
+          #   package.json
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
         run: echo "Deploying..."
-
-
-
-
-# name: Deploy Project  # Name of the Workflow
-# on: push # Event occured
-# jobs: #Jobs
-#   test: # Job Name 
-#     runs-on: ubuntu-latest # running on machine
-#     steps:
-#     - name: Get code  # Step name
-#       uses: actions/checkout@v5 
-
-#     - name: Install NodeJS
-#       uses: actions/setup-node@v5
-#       with:
-#         node-version: 22
-    
-#     - name: Install dependencies
-#       run: npm install
-
-#     - name: Run tests
-#       run: npm test 
-#   deploy:
-#     needs: test
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Get code
-#       uses: actions/checkout@v5
-
-
-#     - name: Install NodeJS
-#       uses: actions/setup-node@v5
-#       with:
-#         node-version: 22
-#     - name: Install dependencies
-#       run: npm install
-#     - name: Build Project
-#       run: npm run build
-#     - name: Deployment
-#       run: echo "Deploying ..."
-
-      # - name: Install NodeJS
-      #   uses: actions/setup-node@v5
-      #   with:
-      #     node-version: 22
-      # - name: Install dependencies
-      #   run: npm install
-      
-      # - name: Build Project
-      #   run: npm run build
-
-      # - name: Deployment
-      #   run: echo "Deploying ..."
-
