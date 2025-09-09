@@ -214,9 +214,8 @@ const config: Config = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  testEnvironment: 'jsdom', // 👈 Needed for React DOM rendering
-  preset: 'ts-jest',        // 👈 Needed for TypeScript support
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'], // 👈 Optional test setup
+  testEnvironment: 'jsdom', 
+  preset: 'ts-jest',        
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
