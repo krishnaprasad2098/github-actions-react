@@ -1,11 +1,11 @@
-name: Deploy Project
-on: push
-jobs:
-  test:
-    runs-on: ubuntu-latest
+name: Deploy Project  # Name of the Workflow
+on: push # Event occured
+jobs: #Jobs
+  test: # Job Name 
+    runs-on: ubuntu-latest # running on machine
     steps:
-    - name: Get code
-      uses: actions/checkout@v5
+    - name: Get code  # Step name
+      uses: actions/checkout@v5 
 
     - name: Install NodeJS
       uses: actions/setup-node@v5
@@ -16,8 +16,9 @@ jobs:
       run: npm install
 
     - name: Run tests
-      run: npm test
+      run: npm test 
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Get code
