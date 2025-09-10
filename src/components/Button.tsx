@@ -2,7 +2,7 @@
 import React from 'react';
 
 type ButtonProps = {
-  label: String;
+  label: string;
   onClick: () => void;
 };
 
